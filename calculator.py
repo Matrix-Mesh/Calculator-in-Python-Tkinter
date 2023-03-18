@@ -20,14 +20,22 @@ def bt_clear():
     global expression 
     expression = "" 
     scvalue.set("")
-    
-# 'bt_equal':This method calculates the expression  present in input field
 
+# 'bt_equal':This method calculates the expression  present in input field
 def bt_equal():
     global expression
     result = str(eval(expression)) # 'eval':This function is used to evaluates the string expression directly
     scvalue.set(result)
     expression = ""
+
+# 'bt_back' : This is used to remove the last number entered
+def bt_back():
+    global expression
+    expression = ""
+    expression = screen.get()[:-1]
+    screen.delete(0,"end")
+    screen.insert(0,expression)
+    
 
 expression = ""
 
@@ -38,14 +46,14 @@ scvalue.set("")        # Setting the default value empty
 
 # Creating buttons within Frames
 
-f = Frame(root, width=3, height=50, bd=0, highlightbackground="black", highlightcolor="black", highlightthickness=2)
+f = Frame(root, width=3, height=50, bd=0, highlightbackground="black", highlightcolor="black", highlightthickness=2, )
 f.pack(side=TOP)
 
-screen = Entry(f ,textvariable=scvalue , font= "lucida 40 bold", width=50, bg="#eee", bd=0, justify=RIGHT)
+screen = Entry(f ,textvariable=scvalue , font= "lucida 40 bold",bg="black",fg="white", width=50 , bd=0, justify=RIGHT )
 screen.grid(row=0, column=0)
 screen.pack(fill=X, ipadx=8 , padx=10, pady=10) #Taking Input
 
-btns_frame = Frame(root, width=312, height=272.5, bg="grey")
+btns_frame = Frame(root, width=312, height=272.5, bg="black" )
 btns_frame.pack()
 
 # Row 1
@@ -56,7 +64,7 @@ b8 = Button(btns_frame, text="8" , padx=20 , pady=18, font="lucida 30 bold" ,com
 
 b7 = Button(btns_frame, text="7" , padx=20 , pady=18, font="lucida 30 bold" ,command = lambda: btn_click(7)).grid(row = 0, column = 2, padx = 1, pady = 1)
 
-add = Button(btns_frame, text="+" , padx=28 , pady=18, font="lucida 30 bold" ,command = lambda: btn_click("+")).grid(row = 0, column = 3, padx = 1, pady = 1)
+add = Button(btns_frame, text="+" , padx=26 , pady=18, font="lucida 30 bold" ,command = lambda: btn_click("+")).grid(row = 0, column = 3, padx = 1, pady = 1)
 
 # Row 2
 
@@ -73,20 +81,22 @@ sub = Button(btns_frame, text="-" , padx=31 , pady=18, font="lucida 30 bold" ,co
 b3 = Button(btns_frame, text="3" , padx=20 , pady=18, font="lucida 30 bold" ,command = lambda: btn_click(3)).grid(row = 2, column = 0, padx = 1, pady = 1)
 b2 = Button(btns_frame, text="2" , padx=20 , pady=18, font="lucida 30 bold", command = lambda: btn_click(2)).grid(row = 2, column = 1, padx = 1, pady = 1)
 b1 = Button(btns_frame, text="1" , padx=20 , pady=18, font="lucida 30 bold" ,command = lambda: btn_click(1)).grid(row = 2, column = 2, padx = 1, pady = 1)
-multiply = Button(btns_frame, text="*" , padx=30 , pady=18, font="lucida 30 bold" ,command = lambda: btn_click("*")).grid(row = 2, column = 3, padx = 0, pady = 1)
+multiply = Button(btns_frame, text="*" , padx=29 , pady=18, font="lucida 30 bold" ,command = lambda: btn_click("*")).grid(row = 2, column = 3, padx = 0, pady = 1)
 
 # Row 4
 
 b0 = Button(btns_frame, text="0" , padx=69 , pady=18, font="lucida 30 bold" ,command = lambda: btn_click(0)).grid(row = 3, column = 0, padx = 1, pady = 1 , columnspan=2)
 
-dot= Button(btns_frame, text="." , padx=25 , pady=18, font="lucida 30 bold" , command = lambda: btn_click(".")).grid(row = 3, column = 2, padx = 0, pady = 0)
+dot= Button(btns_frame, text="." , padx=25 , pady=18, font="lucida 30 bold" , command = lambda: btn_click(".")).grid(row = 3, column = 2, padx = 1, pady = 1)
 
 divide = Button(btns_frame, text="/" , padx=33 , pady=18, font="lucida 30 bold" ,command = lambda: btn_click("/")).grid(row = 3, column = 3, padx = 0, pady = 1)
 
 # Row 5
 
-clear = Button(btns_frame, text="C" , padx=113 , pady=18, font="lucida 30 bold" ,command = lambda: bt_clear()).grid(row = 4, column = 0,columnspan=3 ,padx = 0, pady = 0)
+clear = Button(btns_frame, text="C" , padx=66 , pady=18, font="lucida 30 bold" ,command = lambda: bt_clear()).grid(row = 4, column = 0,columnspan=2 ,padx = 0, pady = 0)
 
-equal = Button(btns_frame, text="=" , padx=28, pady=18, font="lucida 30 bold" ,command = lambda: bt_equal()).grid(row = 4, column = 3, padx = 1, pady = 1)
+back = Button(btns_frame, text="D" , padx=16, pady=18, font="lucida 30 bold" ,command = lambda: bt_back()).grid(row = 4 , column = 2,padx = 1, pady = 1)
+
+equal = Button(btns_frame, text="=" , padx=27, pady=18, font="lucida 30 bold" ,command = lambda: bt_equal()).grid(row = 4, column = 3, padx = 1, pady = 1)
 
 root.mainloop()
