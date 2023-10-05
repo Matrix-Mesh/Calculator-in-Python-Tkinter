@@ -26,7 +26,7 @@ def bt_equal():
     global expression
     result = str(eval(expression)) # 'eval':This function is used to evaluates the string expression directly
     scvalue.set(result)
-    expression = ""
+    expression = str(result)
 
 # 'bt_back' : This is used to remove the last number entered
 def bt_back():
